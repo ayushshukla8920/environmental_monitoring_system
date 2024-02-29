@@ -41,7 +41,7 @@ Implementing a simple and user-friendly interface._
 
 
 
-                                                ![Untitled Diagram drawio-2](https://github.com/ayushshukla8920/environmental_monitoring_system/assets/149079402/88b51620-586d-477e-a6c2-769ccb14e632)
+![Untitled Diagram drawio-2](https://github.com/ayushshukla8920/environmental_monitoring_system/assets/149079402/88b51620-586d-477e-a6c2-769ccb14e632)
 
 
 
