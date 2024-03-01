@@ -1,18 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Environment Monitoring System</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="script.js"></script>
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-</head>
-<body>
-    <div class="search">
-        <img src="images/pin.png" alt="">
-        <input id="search-box" type="text" placeholder="Enter Location">
-        <button><i class='bx bx-right-arrow-alt'></i></button>
-    </div>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Environmental Monitoring System</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    </head>
+    <body>
+        <header>
+            <a href="index.html" class="logo" ><img src="images/logo.jpeg" alt="Image"></a>
+            <ul class="navmenu">
+                <li><a href="https://www.airnow.gov/aqi/aqi-basics/#:~:text=Think%20of%20the%20AQI%20as,300%20represents%20hazardous%20air%20quality.">About</a></li>
+                <li><a href="https://openweathermap.org/api">APIs</a></li>
+                <li><a href="https://education.nationalgeographic.org/resource/all-about-climate/">Climate</a></li>
+                <li><a href="https://home.openweathermap.org/">Products</a></li>
+            </ul>
+            <div class="nav-icon">
+                <a href=".search_box" onclick="scrollToSearchBox()"><i class='bx bx-search'></i></a>
+            </div>    
+        </header>
+        <section class="main-home">
+            <div class="main-text">
+                <h3>Proprietary Climate,
+                    Air and Water Quality Index and Environment 
+                    Monitoring
+                </h3>
+                <h1>A closer look<br>
+                    at air and <br>
+                    water well-being</h1>
+                <h5>A deep Dive into indices for Environmental wellness</h5>
+                <div class="search">
+                    <img src="images/pin.png" alt="">
+                    <div class="input-group">
+                        <input id="search-box" type="text">
+                        <label class="placeholder">Enter Location</label>
+                    </div>
+                    <button onclick="navigateToPage2()"><i class='bx bx-right-arrow-alt'></i></button>
+                </div>
+            </div>
+        </section>
+        <script>
+            function navigateToPage2(){
+                var inputData = document.getElementById('search-box').value;
+                window.location.href = 'dashboard.html?data=' + encodeURIComponent(inputData);
+            }
+
+            function scrollToSearchBox(){
+                var searchBoxElement = document.getElementById('search-box');
+                searchBoxElement.scrollIntoView({ behavior: 'smooth' });
+                document.getElementById('search-box').focus();
+            }
+        </script>
+    </body>
 </html>

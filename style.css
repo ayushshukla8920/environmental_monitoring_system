@@ -1,0 +1,167 @@
+@import url('https://fonts.googleapis.com/css2?family=Madimi+One&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    font-family: 'Madimi One';
+    list-style: none;
+    text-decoration: none;
+}
+header{
+    position: fixed;
+    width: 100%;
+    top: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 10%;
+}
+.logo img{
+    max-width: 120px;
+    height: auto;
+}
+.navmenu{
+    display: flex;
+}
+.navmenu a{
+    color: #f4eded;
+    font-size: 16px;
+    text-transform: capitalize;
+    padding: 10px 20px;
+    font-weight: 400;
+    transition: all .42s ease;
+}
+.navmenu a:hover{
+    color: #fdfcfc;
+}
+.nav-icon{
+    display: flex;
+    align-items: center;
+}
+.nav-icon i{
+    margin-right: 20px;
+    color:#f7f2f2;
+    font-size: 25px;
+    font-weight: 400;
+    transition: all .42s ease;
+}
+.nav-icon i:hover{
+    transform: scale(1.1);
+    color: #ee1c47;
+
+}
+#menu-icon{
+    font-size: 35px;
+    color: #f4efef;
+    z-index: 10001;
+    cursor: pointer;
+}
+section{
+    padding: 5% 10%;
+}
+.main-home{
+    width: 100%;
+    height: 100vh;
+    background-image: url(images/earth.jpg);
+    background-position: center;
+    background-size: cover;
+    display: grid;
+    grid-template-columns: repeat(1,1fr);
+    align-items: center;
+}
+.main-text{
+    color: #ee1c47;
+    font-size: 16px;
+    text-transform: capitalize;
+    font-weight: 500;
+}
+.main-text h1{
+    color: #fdf8f8;
+    font-size: 65px;
+    text-transform: capitalize;
+    line-height: 1.1;
+    font-weight: 600;
+    margin: 6px 0 10px;
+    margin-bottom: 50px;
+    margin-top: 30px;
+}
+.main-text h5{
+    color: #767677;
+    font-size: 20px;
+    margin-bottom: 60px;
+}
+
+header.sticky{
+    background: beige;
+    padding: 20px 10px;
+    box-shadow: 0px 0px 10px rgb(0 0 0 /10%);
+}
+
+body{
+    background-color: #15151B;
+    color: white;
+}
+img{
+    opacity: 80%;
+}
+.search{
+    display: flex;
+    align-items: center;
+    width: 70vh;
+}
+::placeholder{
+    background-color: rgb(60, 60, 60);
+    color: white;
+    opacity: 60%;
+    font-size: 20px;
+}
+.search button{
+    width: 280px;
+    height: 55px;
+    font-size: 40px;
+    border-radius: 300px;
+    border: 1px solid black;
+    margin-left: 20px;
+}
+.search button:active{
+    transform: scale(.95);
+}
+.search button:hover{
+    opacity: 60%;
+    transition: .1s ease-in;
+}
+input{
+    display: inline;
+    border: 1px solid white;
+    opacity: 90%;
+    border-radius: 20px;
+    height: 60px;
+    width: 70vh;
+    background-color: rgb(60, 60, 60);
+    font-size: 20px;
+    color: white;
+    padding-left: 40px;
+}
+.input-group{
+    position: relative;
+}
+label{
+    background-color: rgb(60, 60, 60);
+    color: white;
+    font-size: 20px;
+}
+.placeholder{
+    position: absolute;
+    left: 25px;
+    top: 17px;
+    pointer-events: none;
+    transition: .1s ease-out;
+}
+input:focus + .placeholder{
+    top: -14px;
+    left: 27px;
+    transition: .1s ease-in;
+}

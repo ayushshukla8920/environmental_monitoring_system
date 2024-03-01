@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Madimi+One&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    font-family: 'Madimi One';
+    list-style: none;
+    text-decoration: none;
+}
+header{
+    position: fixed;
+    width: 100%;
+    top: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 10%;
+}
+.logo img{
+    /* max-width: 120px; */
+    height: 20px;
+
+}
+.navmenu{
+    display: flex;
+}
+.navmenu a{
+    color: #f4eded;
+    font-size: 16px;
+    text-transform: capitalize;
+    padding: 10px 20px;
+    font-weight: 400;
+    transition: all .42s ease;
+}
+.navmenu a:hover{
+    color: #fdfcfc;
+}
+.nav-icon{
+    display: flex;
+    align-items: center;
+}
+.nav-icon i{
+    margin-right: 20px;
+    color:#f7f2f2;
+    font-size: 25px;
+    font-weight: 400;
+    transition: all .42s ease;
+}
+.nav-icon i:hover{
+    transform: scale(1.1);
+    color: #ee1c47;
+
+}
+#menu-icon{
+    font-size: 35px;
+    color: #f4efef;
+    z-index: 10001;
+    cursor: pointer;
+}
+section{
+    padding: 5% 10%;
+    padding-top: 100px;
+}
+.main-home{
+    width: 100%;
+    height: 120vh;
+    background-image: url(images/earth.jpg);
+    background-position: center;
+    background-size: cover;
+    justify-content: space-between;
+}
+#city-name{
+    font-size: 80px;
+    color: rgb(250, 255, 158);
+    opacity: 70%;
+    display: inline-block;
+}
+.cnm{
+    display: flex;
+}
+.temp{
+    float: right;
+    font-size: 120px;
+    color: white;
+    opacity: 70%;
+}
+.lat_long{
+    color: white;
+    opacity: 70%;
+}
+#aqi p{
+    color: white;
+    font-size: 20px;
+    display: inline-block;
+}
+#aqi h1{
+    color: white;
+    font-size: 60px;
+}
+#aqi h2{
+    float: right;
+    color: white;
+    margin-top: 20px;
+    font-size: 45px;
+}
+.lat_long h3{
+    float: right;
+    font-size: 30px;
+}
+.lat_long h4{
+    text-align: center;
+    margin-right: 10px;
+    font-size: 50px;
+}
+.ozone{
+    color: white;
+    display: flex;
+    justify-content: space-between;
+}

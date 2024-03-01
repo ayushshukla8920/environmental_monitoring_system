@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dashboard</title>
+    <link rel="stylesheet" href="db.css">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+</head>
+<body>
+    <header>
+        <a href="index.html" class="logo" ><img src="images/logo.jpeg" alt="Image"></a>
+        <ul class="navmenu">
+            <li><a href="https://www.airnow.gov/aqi/aqi-basics/#:~:text=Think%20of%20the%20AQI%20as,300%20represents%20hazardous%20air%20quality.">About</a></li>
+            <li><a href="https://openweathermap.org/api">APIs</a></li>
+            <li><a href="https://education.nationalgeographic.org/resource/all-about-climate/">Climate</a></li>
+            <li><a href="https://home.openweathermap.org/">Products</a></li>
+        </ul>    
+    </header>
+    <section class="main-home">
+        <div id="cnm">
+            <h1 id="city-name">op</h1>
+            <h1 class="temp">-</h1>
+        </div>
+        <div class="lat_long">
+            <h2 class="lat">Latitude: </h2>
+            <h2 class="long">Longitude: </h2>
+            <h4 class="time">time</h4><br>
+            <h3 class="date">12 March 2024</h3>
+        </div><br><br><br><hr><br>
+        <div id='aqi'>
+            <p><i class='bx bx-wind'></i> Air Quality Index</p>
+            <h2>--</h2>
+            <h1>-</h1>
+        </div><br><br><hr><br>
+        <div class="ozone">
+            <h1>
+                Ozone( O<sub>3</sub> )
+            </h1>
+            <h1 class="o3value">
+                &micro;g/m<sup>3</sup>
+            </h1>
+        </div>
+        <div class="ozone">
+            <h1>
+                CO
+            </h1>
+            <h1 class="covalue">
+                &micro;g/m<sup>3</sup>
+            </h1>
+        </div>
+        <div class="ozone">
+            <h1>
+                SO<sub>2</sup>
+            </h1>
+            <h1 class="so2value">
+                &micro;g/m<sup>3</sup>
+            </h1>
+        </div>
+        <div class="ozone">
+            <h1>
+                NO<sub>2</sup>
+            </h1>
+            <h1 class="no2value">
+                &micro;g/m<sup>3</sup>
+            </h1>
+        </div>
+        <div class="ozone">
+            <h1>
+                PM 2.5
+            </h1>
+            <h1 class="pm25">
+                &micro;g/m<sup>3</sup>
+            </h1>
+        </div>
+        <div class="ozone">
+            <h1 >
+                PM 10
+            </h1>
+            <h1 class="pm10">
+                &micro;g/m<sup>3</sup>
+            </h1>
+        </div>
+    </section>
+    <div>
+
+    </div>
+    <script >
+        var urlParams = new URLSearchParams(window.location.search);
+        var inputData = urlParams.get('data');
+        console.log(inputData);
+        document.querySelector('#city-name').innerHTML = 'City: ' + inputData;
+        
+        const api={
+            key:"f6bf196015464b5fb8273e5522911cfc",
+            base:"https://api.openweathermap.org/data/2.5/",
+            base1: "https://api.openaq.org/v1/measurements"
+        } 
+        let o3V = document.querySelector('.o3value');
+        let coV = document.querySelector('.covalue');
+        let so2V = document.querySelector('.so2value');
+        let no2V = document.querySelector('.no2value');
+        let pm10V = document.querySelector('.pm10');
+        let pm25V = document.querySelector('.pm25');
+
+
+        const searchbox=inputData
+        document.addEventListener('DOMContentLoaded', setQuery);
+
+        function setQuery(evt)
+        {
+            getResults(searchbox);
+        }
+
+        function getResults(query)
+        {
+            try{
+            fetch(`${api.base}weather?q=${query}&units=metric&APPID=${api.key}`)
+            .then(weather=>{
+                return weather.json();
+            }).then(displayResults);
+            } catch{
+                alert('City Not Found')
+            }   
+        }
+        function displayResults_aq(ap)
+        {
+            console.log(ap)
+            
+            let o3 = document.querySelector('.o3value');
+            o3.innerText = `${ap.results[0].value} µg/m³`;
+            let co = document.querySelector('.covalue')
+            co.innerText = `${ap.results[1].value} µg/m³`;
+            let so2 = document.querySelector('.so2value')
+            so2.innerText = `${ap.results[2].value} µg/m³`;
+            let no2 = document.querySelector('.no2value')
+            no2.innerText = `${ap.results[3].value} µg/m³`
+            let pm10 = document.querySelector('pm10')
+            pm10.innerText = `${ap.results[4].value} µg/m³`;
+            let pm25 = document.querySelector('.pm25')
+            pm25.innerText = `${ap.results[5].value} µg/m³`;
+
+            o3V.innerText = `${ap.results[0].parameter}`;
+            coV.innerText = `${ap.results[1].parameter}`;
+            so2V.innerText = `${ap.results[2].parameter}`;
+            no2V.innerText = `${ap.results[3].parameter}`;
+            pm10V.innerText = `${ap.results[4].parameter}`;
+            pm25V.innerText = `${ap.results[5].parameter}`;
+
+        }
+
+
+
+
+            
+            
+
+        function displayResults(weather)
+        {
+            try{
+            fetch(`${api.base1}?coordinates=${weather.coord.lat},${weather.coord.lon}`)
+            .then(ap =>{
+                return ap.json();
+            }).then(displayResults_aq)
+            } catch{
+                alert('Enter More Precise Location');
+            }
+
+            console.log(weather);
+            let lat = document.querySelector('.lat');
+            lat.innerHTML = `Latitude : ${weather.coord.lat}`;
+            let lon = document.querySelector('.long');
+            lon.innerHTML = `Longitude : ${weather.coord.lon}`;
+            let temp = document.querySelector('.temp');
+            temp.innerHTML =`${weather.main.temp}°C`;
+            // let date = new Date();
+            // let datenow = document.querySelector('.date')
+            // datenow.innerHTML = dateBuilder(date);
+
+            
+            
+
+        // function dateBuilder(d)
+        // {
+        //     let months=[
+        //         "January","February","March","April","May","June","July","August","September",
+        //         "October","November","December",
+        //     ];
+        //     let days=[
+        //         "Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"
+        //     ];
+
+        //     let day=days[d.getDay()];
+        //     let date=d.getDate();
+        //     let month=months[d.getMonth()];
+        //     let year=d.getFullYear();
+
+        //     return `${day} ${date} ${month} ${year}`;
+        // }
+        }
+        function refreshTime() {
+            const now = new Date();
+            var hours = now.getHours();
+            var minutes = now.getMinutes();
+            var seconds = now.getSeconds();
+            var date = now.getDate();
+            var month = now.getMonth();
+            var year = now.getFullYear();
+            var day = now.getDay();
+
+
+            if (day == 0)
+                day = "Sunday";
+            else if (day == 1)
+                day = "Monday";
+            else if (day == 2)
+                day = "Tuesday";
+            else if (day == 3)
+                day = "Wednesday";
+            else if (day == 4)
+                day = "Thursday";
+            else if (day == 5)
+                day = "Friday";
+            else if (day == 6)
+                day = "Saturday";
+            
+
+            if (month == 0)
+                month = "January";
+            else if (month == 1)
+                month = "February";
+            else if (month == 2)
+                month = "March";
+            else if (month == 3)
+                month = "April";
+            else if (month == 4)
+                month = "May";
+            else if (month == 5)
+                month = "June";
+            else if (month == 6)
+                month = "July";
+            else if (month == 7)
+                month = "August";
+            else if (month == 8)
+                month = "September";
+            else if (month == 9)
+                month = "October";
+            else if (month == 10)
+                month = "November";
+            else if (month == 11)
+                month = "December";
+
+
+            if (minutes<10){
+                minutes="0"+minutes;
+            }
+
+            if (seconds<10){
+                seconds="0"+seconds;
+            }
+
+
+            dates1 = document.querySelector(".date");
+            times = document.querySelector(".time");
+
+            time = " "+hours+":"+minutes+":"+seconds;
+            times.innerHTML = time;
+            full_date = day+" "+date+" "+month+" ";
+            dates1.innerHTML = full_date;
+
+        }
+        setInterval(refreshTime, 10);
+
+    </script>
+
+</body>
+</html>
